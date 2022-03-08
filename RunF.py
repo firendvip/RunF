@@ -1,5 +1,6 @@
 import sys
 import threading
+import time
 
 import keyboard
 from PyQt5 import QtWidgets
@@ -9,6 +10,7 @@ from PyQt5.QtWidgets import QWidget, \
     QLabel, QVBoxLayout, QApplication, QSystemTrayIcon, QAction, QMenu, QLineEdit, QPushButton, QHBoxLayout
 
 import RunAA
+import favor10
 import strengthen
 import ys_fx
 from favor10 import Favor
@@ -18,7 +20,7 @@ class WinF(QWidget):
     def __init__(self):
         super().__init__()
 
-        self.setWindowTitle('RunF2.3')
+        self.setWindowTitle('RunF2.4')
         self.setWindowIcon(QIcon('./HTicon.ico'))
         # 隐藏整个菜单栏
         self.setWindowFlags(Qt.FramelessWindowHint)
@@ -135,20 +137,21 @@ class WinF(QWidget):
 
     def favor_run10(self):
         main.close()
+        time.sleep(1)
         favor = Favor()
         i = 1
-        count1 = 0  # 用来统计找到好感图片的次数
+          # 用来统计找到好感图片的次数
         # count2 = 0  # 用来统计未找到好感图片的次数 留着以后可能扩展日志用
         while True:
             if ys_fx.find_p(ys_fx.p_swz, n=180):  # p_swz 守望者任务图片
                 favor.hg10()
-                # print("第%d次执行成功" % i)
+                # print("count1 = %d " % favor10.count1)
                 i += 1
 
-            if i > 15:
+            if i > 20:
                 break
 
-            if count1 > 10:
+            if favor10.count1 > 10:
                 break
 
             if keyboard.is_pressed('t'):

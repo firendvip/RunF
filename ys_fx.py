@@ -23,6 +23,7 @@ p_qh = './youyongpc/qh.png'
 
 p_tfrw = './youyongpc/tufa.png'
 p_sjwc = './youyongpc/sjwc.png'  # 突发任务完成后的绿色方块
+P_bfdl = './youyongpc/bfdl.png'
 
 # =================================================
 p_md = './youyongpc/md_swjl.png'
@@ -43,7 +44,7 @@ p_11 = './youyongpc/11.png'
 
 # 循环找图并单击
 
-def mouse_click(path, area= None, num=0.7, n=20 ):
+def mouse_click(path, area= None, num=0.7, n=30 ):
     """ 循环找图并单击 """
 
     s = time.perf_counter()  # 获取系统当前时间
@@ -67,13 +68,6 @@ def mouse_click(path, area= None, num=0.7, n=20 ):
         if keyboard.is_pressed('t'):
             # print('已断开')
             break
-
-
-
-
-
-
-
 
 # 找图并按键
 def key_press(path, key=None, n=30, num=0.7, m=0.5):
@@ -124,27 +118,6 @@ def find_p(path, n=30, num=0.7):
             break
 
 
-# 拖动
-def drag_to(path, x, y, t=0.5):
-    mouse_click(path)
-    pyautogui.drag(x, y, t, button='left')
-
-# 长按某个按键
-def keyDoUp(s_key, s_time):
-    pyautogui.keyDown(s_key)
-    time.sleep(s_time)
-    pyautogui.keyUp(s_key)
-
-# 人物跑
-def keyRand(r_key, r_time):
-    pyautogui.keyDown(r_key)
-    time.sleep(0.5)
-    pyautogui.mouseDown(button='right')
-    time.sleep(r_time)
-    pyautogui.keyUp(r_key)
-    pyautogui.mouseUp(button='right')
-
-
 def cjyx():
     """ 退出游戏重进 """
     key_press(path_RW_jm, 'esc', m=0.5)  # 如果找到人物头像，在人物界面
@@ -153,27 +126,3 @@ def cjyx():
     mouse_click(p_jryx, n=120)  # 回到进入游戏界面，点击进入游戏
 
 
-# 传回锚点
-def back_md():
-    pyautogui.press('m')  # 按m调出地图
-    mouse_click(path_hgcs)  # 点击绿色传送点
-    mouse_click(p_kdmd)  # 点击口袋锚点
-    mouse_click(path_TY_CS)  # 点击传送
-
-
-
-
-# 长按摸个键然后放开
-def long_press(key,l_time):
-    pyautogui.keyDown(key)
-    time.sleep(l_time)
-    pyautogui.keyUp(key)
-
-
-def run_w(w_time):
-    """ 向前跑 """
-    pyautogui.keyDown('w')
-    pyautogui.mouseDown(button='right')
-    time.sleep(w_time)
-    pyautogui.mouseUp(button='right')
-    pyautogui.keyUp('w')
